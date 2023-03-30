@@ -25,7 +25,7 @@ const randomQuote = () => {};
   </header>
   <section class="body-quote-section">
     <OneQuoteView :text="'Almaz'" />
-    <AuthorButton />
+    <AuthorButton :author="'Almaz'" :type="'business'" />
   </section>
 
   <RouterView />
@@ -38,6 +38,9 @@ body {
   font-family: "Raleway";
   font-style: normal;
   font-weight: 500;
+
+  display: flex;
+  flex-direction: column;
 }
 
 header {

@@ -1,1 +1,16 @@
 @import "./base.css";
+
+.footer {
+  position: fixed;
+  bottom: 24px;
+  right: 45%;
+  margin: 0 auto;
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #828282;
+}

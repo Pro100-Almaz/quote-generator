@@ -1,7 +1,7 @@
 @import "./base.css";
 
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 24px;
   right: 45%;
   margin: 0 auto;

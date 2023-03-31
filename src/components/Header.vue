@@ -14,7 +14,13 @@
 </template>
 
 <script setup lang="ts">
-const randomQuote = () => {};
+import { RouterLink, useRouter } from "vue-router";
+
+const router = useRouter();
+
+const randomQuote = () => {
+  router.push("/");
+};
 </script>
 
 <style scoped>

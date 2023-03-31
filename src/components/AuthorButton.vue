@@ -42,6 +42,8 @@ const quotesFromAuthor = () => {
   border: none;
   background-color: white;
   cursor: pointer;
+
+  margin-bottom: 200px;
 }
 
 .info-btn:hover {

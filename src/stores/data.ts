@@ -1,7 +1,7 @@
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 
-interface Quote {
+export interface Quote {
   _id: Number;
   quoteText: String;
   quoteAuthor: String;
@@ -9,7 +9,7 @@ interface Quote {
   __v: Number;
 }
 
-interface Pagination {
+export interface Pagination {
   currentPage: Number;
   nextPage: Number;
   totalPages: Number;
@@ -23,19 +23,15 @@ export interface DataStore {
   data: Quote[];
 }
 
-export const ListOfQuotes = defineStore({
-  id: "quoteData",
-  state: (): DataStore => ({
-    statusCode: 0,
-    message: "",
-    pagination: {
-      currentPage: 0,
-      nextPage: 0,
-      totalPages: 0,
-    },
-    totalQuotes: 0,
-    data: [],
+export interface SearchData {
+  author: String;
+}
+
+export const myStore = defineStore({
+  id: "searchData",
+  state: (): SearchData => ({
+    author: "Bill Gates",
   }),
-  actions: {},
   getters: {},
+  actions: {},
 });

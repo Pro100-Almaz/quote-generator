@@ -14,13 +14,17 @@
 </template>
 
 <script setup lang="ts">
+import { RouterLink, useRouter } from "vue-router";
+
+const router = useRouter();
+
 const props = defineProps<{
   author: String;
   type: String;
 }>();
 
 const quotesFromAuthor = () => {
-  console.log("Hello world");
+  router.push("/author");
 };
 </script>
 

@@ -25,13 +25,28 @@ export interface DataStore {
 
 export interface SearchData {
   author: String;
+  dataLoading: Boolean;
+  quoteData: DataStore;
 }
 
 export const myStore = defineStore({
   id: "searchData",
   state: (): SearchData => ({
     author: "Bill Gates",
+    dataLoading: false,
+    quoteData: {} as DataStore,
   }),
   getters: {},
-  actions: {},
+  actions: {
+    async getRandomQuote() {
+      const randomPage = Math.floor(Math.random() * 7267) + 1;
+      const response = await fetch(
+        `https://quote-garden.onrender.com/api/v3/quotes?page=${randomPage}`
+      );
+      const jsonData = await response.json();
+      this.quoteData = jsonData;
+      this.dataLoading = true;
+      this.author = this.quoteData.data[0].quoteAuthor;
+    },
+  },
 });

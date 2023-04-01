@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RouterView } from "vue-router";
-import { onMounted, ref } from "vue";
+import { RouterView, useRoute } from "vue-router";
+import { onMounted, ref, watch } from "vue";
 
 import OneQuoteView from "../components/OneQuoteView.vue";
 import AuthorButton from "../components/AuthorButton.vue";
@@ -8,31 +8,19 @@ import AuthorButton from "../components/AuthorButton.vue";
 import type { DataStore } from "@/stores/data";
 import { myStore } from "@/stores/data";
 
-const quoteData = ref<DataStore>({} as DataStore);
-const dataLoading = ref(false);
+// const quoteData = ref<DataStore>({} as DataStore);
 const store = myStore();
 
-onMounted(async () => {
-  const randomPage = Math.floor(Math.random() * 7267) + 1;
-  const response = await fetch(
-    `https://quote-garden.onrender.com/api/v3/quotes?page=${randomPage}`
-  );
-  const jsonData = await response.json();
-  quoteData.value = jsonData;
-  dataLoading.value = true;
-  store.author = quoteData.value.data[0].quoteAuthor;
-});
-
-console.log(quoteData.value);
+onMounted(store.getRandomQuote);
 </script>
 
 <template>
   <section class="body-quote-section">
-    <div v-if="dataLoading">
-      <OneQuoteView :text="quoteData.data[0].quoteText" />
+    <div v-if="store.dataLoading">
+      <OneQuoteView :text="store.quoteData.data[0].quoteText" />
       <AuthorButton
-        :author="quoteData.data[0].quoteAuthor"
-        :type="quoteData.data[0].quoteGenre"
+        :author="store.quoteData.data[0].quoteAuthor"
+        :type="store.quoteData.data[0].quoteGenre"
       />
     </div>
     <div v-else class="spinner"></div>

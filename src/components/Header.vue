@@ -15,10 +15,13 @@
 
 <script setup lang="ts">
 import { RouterLink, useRouter } from "vue-router";
+import { myStore } from "@/stores/data";
 
 const router = useRouter();
+const store = myStore();
 
 const randomQuote = () => {
+  store.getRandomQuote();
   router.push("/");
 };
 </script>
